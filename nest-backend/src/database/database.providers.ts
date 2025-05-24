@@ -20,7 +20,7 @@ export const databaseProviders = [
         ssl: false,
         entities: [User, Skill, Review, Feedback, Goal],
         migrations: ['src/database/migrations/*.{ts,js}'],
-        synchronize: false,
+        synchronize: true,
       });
 
       return dataSource.initialize();

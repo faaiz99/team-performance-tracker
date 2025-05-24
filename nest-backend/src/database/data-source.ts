@@ -1,6 +1,11 @@
 import { DataSource } from 'typeorm';
 import * as dotenv from 'dotenv';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
+import { User } from '../user/entities/user.entity';
+import { Skill } from '../skill/entities/skill.entity';
+import { Review } from '../review/entities/review.entity';
+import { Feedback } from '../feedback/entities/feedback.entity';
+import { Goal } from '../goal/entities/goal.entity';
 
 dotenv.config();
 
@@ -12,9 +17,9 @@ const dbConfig = new DataSource({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false,
-  // entities: ['src/../**/*.entity{.ts,.js}'],
+  entities: ['dist/src/**/*.entity{.ts,.js}'],
   migrations: ['src/database/migrations/*.{ts,js}'],
-  synchronize: true, // Must be false for migrations
+  synchronize: false, // Must be false for migrations
   namingStrategy: new SnakeNamingStrategy(),
 });
 
