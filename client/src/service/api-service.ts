@@ -8,7 +8,7 @@ export class ApiService<T> {
     }
 
     private async request<T>(method: string, url: string, data?: any): Promise<T> {
-        const options = {
+        const options: RequestInit = {
             method,
             headers: {
                 'Content-Type': 'application/json',
@@ -28,7 +28,12 @@ export class ApiService<T> {
         return response.json();
     }
 
-    async getAll(queryParams?: { page?: number; limit?: number }): Promise<T[]> {
+    async getAll(queryParams?: { page?: number; limit?: number }): Promise<{
+        page:number
+        limit:number, 
+        total:number
+        data: T[]
+    }> {
         let url = `${this.baseUrl}/${this.entity}`;
         
         if (queryParams) {
@@ -38,7 +43,13 @@ export class ApiService<T> {
             url += `?${params.toString()}`;
         }
 
-        return this.request<T[]>('GET', url);
+        return this.request<
+        {
+        page:number
+        limit:number, 
+        total:number
+        data: T[]
+    }>('GET', url);
     }
 
     async getOne(id: string | number): Promise<T> {
