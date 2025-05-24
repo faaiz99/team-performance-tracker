@@ -38,20 +38,20 @@ export class ReviewService {
     page = 1,
     limit = 10,
   ): Promise<{
-    reviews: Review[];
+    data: Review[];
     page: number;
     limit: number;
     total: number;
   }> {
     const skip = (page - 1) * limit;
-    const [reviews, total] = await this.reviewRepository.findAndCount({
+    const [data, total] = await this.reviewRepository.findAndCount({
       skip,
       take: limit,
       relations: ['user', 'reviewer'],
     });
 
     return {
-      reviews,
+      data,
       page,
       limit,
       total,

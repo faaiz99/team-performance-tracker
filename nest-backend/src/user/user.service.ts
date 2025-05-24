@@ -21,19 +21,19 @@ export class UserService {
     page = 1,
     limit = 10,
   ): Promise<{
-    users: User[];
+    data: User[];
     page: number;
     limit: number;
     total: number;
   }> {
     const skip = (page - 1) * limit;
-    const [users, total] = await this.userRepository.findAndCount({
+    const [data, total] = await this.userRepository.findAndCount({
       skip,
       take: limit,
     });
 
     return {
-      users,
+      data,
       page,
       limit,
       total,
