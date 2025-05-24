@@ -1,9 +1,9 @@
-import { 
-  IsNotEmpty, 
-  IsString, 
+import {
+  IsNotEmpty,
+  IsString,
   IsNumber,
   IsOptional,
-  IsDateString
+  IsDateString,
 } from 'class-validator';
 
 export class CreateFeedbackDto {
@@ -21,5 +21,5 @@ export class CreateFeedbackDto {
 
   @IsOptional()
   @IsDateString()
-  createdAt?: Date; 
+  createdAt?: Date;
 }

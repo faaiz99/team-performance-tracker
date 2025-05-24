@@ -1,9 +1,9 @@
-import { 
-  IsNotEmpty, 
-  IsString, 
-  IsBoolean, 
+import {
+  IsNotEmpty,
+  IsString,
+  IsBoolean,
   IsOptional,
-  IsNumber 
+  IsNumber,
 } from 'class-validator';
 
 export class CreateGoalDto {
@@ -17,9 +17,9 @@ export class CreateGoalDto {
 
   @IsOptional()
   @IsBoolean()
-  completed?: boolean = false; 
+  completed?: boolean = false;
 
   @IsNotEmpty()
   @IsNumber()
-  userId: number; 
+  userId: number;
 }

@@ -1,12 +1,12 @@
-import { 
-  IsNotEmpty, 
-  IsString, 
-  IsInt, 
-  Min, 
-  Max, 
+import {
+  IsNotEmpty,
+  IsString,
+  IsInt,
+  Min,
+  Max,
   IsDateString,
-  IsNumber, 
-  IsOptional
+  IsNumber,
+  IsOptional,
 } from 'class-validator';
 
 export class CreateReviewDto {
@@ -22,13 +22,13 @@ export class CreateReviewDto {
 
   @IsNotEmpty()
   @IsNumber()
-  userId: number; 
+  userId: number;
 
   @IsNotEmpty()
   @IsNumber()
-  reviewerId: number; 
+  reviewerId: number;
 
   @IsOptional()
   @IsDateString()
-  createdAt?: Date; 
+  createdAt?: Date;
 }

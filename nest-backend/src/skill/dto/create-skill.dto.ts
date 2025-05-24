@@ -1,4 +1,11 @@
-import { IsNotEmpty, IsString, IsNumber, Min, Max, IsOptional } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsString,
+  IsNumber,
+  Min,
+  Max,
+  IsOptional,
+} from 'class-validator';
 
 export class CreateSkillDto {
   @IsNotEmpty()
@@ -9,9 +16,9 @@ export class CreateSkillDto {
   @IsNumber()
   @Min(1)
   @Max(5)
-  level?: number; 
+  level?: number;
 
   @IsNotEmpty()
   @IsNumber()
-  userId: number; 
+  userId: number;
 }
