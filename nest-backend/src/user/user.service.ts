@@ -10,24 +10,43 @@ export class UserService {
   constructor(
     @Inject('USER_REPOSITORY')
     private readonly userRepository: Repository<User>,
-  ) {}
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+  ) { }
+
+  async create(createUserDto: CreateUserDto): Promise<User> {
+    const user = this.userRepository.create(createUserDto);
+    return this.userRepository.save(user);
   }
 
-  findAll() {
-    return `This action returns all user`;
+async findAll(page = 1, limit = 10): Promise<{
+  users: User[];
+  page: number;
+  limit: number;
+  total: number;
+}> {
+  const skip = (page - 1) * limit;
+  const [users, total] = await this.userRepository.findAndCount({
+    skip,
+    take: limit,
+  });
+
+  return {
+    users,
+    page,
+    limit,
+    total,
+  };
+}
+
+  async findOne(id: number): Promise<User | null> {
+    return this.userRepository.findOneBy({ id });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async update(id: number, updateUserDto: UpdateUserDto): Promise<User | null> {
+    await this.userRepository.update(id, updateUserDto);
+    return this.userRepository.findOneBy({ id });
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async remove(id: number): Promise<void> {
+    await this.userRepository.delete(id);
   }
 }

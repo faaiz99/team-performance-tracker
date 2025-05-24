@@ -17,9 +17,9 @@ export class CreateGoalDto {
 
   @IsOptional()
   @IsBoolean()
-  completed?: boolean = false; // Defaults to false if not provided
+  completed?: boolean = false; 
 
   @IsNotEmpty()
   @IsNumber()
-  userId: number; // The user who owns this goal
+  userId: number; 
 }
